@@ -12,7 +12,7 @@ namespace HGS.Asteroids.States.StateUfoAI {
         [field:Tooltip("Вероятнсоть, что выстрел при этом будет прицельным")]
         public float AimedShootingProbability { get; private set; }
         [field:SerializeField]
-        [field:Tooltip("Вероятнсоть сменить направление движения один раз в секунду")]
+        [field:Tooltip("Вероятность повернуть в сторону корабля один раз в секунду")]
         public float ChangeMoveDirectionProbability { get; private set; }
 
         #region Awake/Start/Update/FixedUpdate

@@ -53,21 +53,19 @@ namespace HGS.Asteroids.States.StateUfoAI {
 
                 IWeapon weapon = stateMachine.GetComponent<IWeapon>();
 
-                if (weapon == null) {
+                if (weapon != null) {
 
-                    return;
+                    if (spaceshipTransform == null || !(Random.value < stateMachine.AimedShootingProbability)) {
 
-                }
+                        weapon.Shoot(thisTransform.rotation * Vector2.up);
 
-                if (spaceshipTransform == null || !(Random.value < stateMachine.AimedShootingProbability)) {
+                    }
+                    else {
 
-                    weapon.Shoot(thisTransform.rotation * Vector2.up);
+                        // прицельный огонь
+                        weapon.Shoot(spaceshipTransform.position - thisTransform.position);
 
-                }
-                else {
-
-                    // прицельный огонь
-                    weapon.Shoot(spaceshipTransform.position - thisTransform.position);
+                    }
 
                 }
 
@@ -76,7 +74,24 @@ namespace HGS.Asteroids.States.StateUfoAI {
             // смена направления
             if (Random.value < stateMachine.ChangeMoveDirectionProbability * Time.deltaTime) {
 
-                thisTransform.Rotate(new Vector3(0f, 0f, Random.value * 360f));
+                if (spaceshipTransform != null) {
+
+                    // на корабль
+                    Vector2 moveVector = thisTransform.rotation * Vector2.up;
+                    Vector2 spaceshipVector = spaceshipTransform.position - thisTransform.position;
+
+                    float angle = Vector2.SignedAngle(moveVector, spaceshipVector);
+
+                    // Debug.Log($"moveVector {moveVector}; spaceshipVector {spaceshipVector}; angle {angle}; ");
+
+                    thisTransform.Rotate(0f, 0f, angle);
+
+                }
+                else {
+
+                    thisTransform.Rotate(new Vector3(0f, 0f, Random.value * 360f));
+
+                }
 
             }
 
