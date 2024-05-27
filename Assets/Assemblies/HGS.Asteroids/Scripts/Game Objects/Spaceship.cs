@@ -1,3 +1,4 @@
+using HGS.Asteroids.Tools;
 using UnityEngine;
 
 namespace HGS.Asteroids.GameObjects {
@@ -17,7 +18,6 @@ namespace HGS.Asteroids.GameObjects {
         [field:Tooltip("Затухание Мощности полета")]
         public AnimationCurve FlightPowerDecay { get; private set; }
 
-        // !!! требуется оптимизация решения
         [field:SerializeField]
         public AnimationCurve AntiFlightPowerAcceleration { get; private set; }
         [field:SerializeField]
@@ -55,6 +55,9 @@ namespace HGS.Asteroids.GameObjects {
 
             thisTransform = transform;
             baseTransform = this.Base();
+
+            AntiFlightPowerAcceleration = new AntiCurve(FlightPowerAcceleration).Curve;
+            AntiFlightPowerDecay = new AntiCurve(FlightPowerDecay).Curve;
 
         }
 
@@ -101,7 +104,7 @@ namespace HGS.Asteroids.GameObjects {
 
                 this.isFlighting = isFlighting;
 
-                // по текущему Value пытаемся найти Time на противоположной Cure с таким же Value для плавного движения
+                // по текущему Value пытаемся найти Time на противоположной Cure с таким же Value для плавного ускорения-замедления
                 float currentValue = currenCurve != null ? currenCurve.Evaluate(timeAction) : default;
                 currenCurve = isFlighting ? FlightPowerAcceleration : FlightPowerDecay;
 
@@ -109,12 +112,16 @@ namespace HGS.Asteroids.GameObjects {
 
                     AnimationCurve antiCurve = isFlighting ? AntiFlightPowerAcceleration : AntiFlightPowerDecay;
 
-                    // float t2 = antiCurve.Evaluate(currentValue);
-                    // float v2 = currenCurve.Evaluate(t2);
-                    
-                    // Debug.Log($"t1 {timeAction}; v1 {currentValue}; t2 {t2}; v2 {v2}");
+                    if (antiCurve != null) {
 
-                    timeAction = antiCurve.Evaluate(currentValue);
+                        // float t2 = antiCurve.Evaluate(currentValue);
+                        // float v2 = currenCurve.Evaluate(t2);
+                        
+                        // Debug.Log($"t1 {timeAction}; v1 {currentValue}; t2 {t2}; v2 {v2}");
+
+                        timeAction = antiCurve.Evaluate(currentValue);
+
+                    }
 
                 }
                 else {
@@ -133,12 +140,6 @@ namespace HGS.Asteroids.GameObjects {
                 AnimateFlight();
 
             }
-            
-            // if (isFlighting && baseTransform != null) {
-
-            //     flightDirection = baseTransform.rotation * Vector2.up;
-
-            // }
 
         }
 

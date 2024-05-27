@@ -18,7 +18,7 @@ namespace HGS.Asteroids.Tools {
 
         public AntiCurve(AnimationCurve curve) {
 
-            if (curve == null) {
+            if (curve == null || curve.length < 2) {
                 
                 return;
 
@@ -26,22 +26,17 @@ namespace HGS.Asteroids.Tools {
 
             antiCurve = new AnimationCurve();
 
-            // !!! работает некорректно
-            for (int i = 0; i < curve.length; i++) {
+            float start = curve[0].time;
+            float end = curve[curve.length - 1].time; 
 
-                float inWeight = curve.keys[i].inTangent * curve.keys[i].inWeight;
-                float outWeight = curve.keys[i].outTangent * curve.keys[i].outWeight;
-                
-                Keyframe inverseKey = new Keyframe(
-                    curve.keys[i].value, curve.keys[i].time, 
-                    Mathf.Atan(curve.keys[i].inTangent), Mathf.Atan(curve.keys[i].outTangent), 
-                    inWeight, outWeight
-                );
-                
-                antiCurve.AddKey(inverseKey);
+            float delta = (end - start) * 0.01f;
+
+            for(; start <= end; start += delta) {
+
+                antiCurve.AddKey(new Keyframe(curve.Evaluate(start), start));
 
             }
-            
+
         }
 
         public float Evaluate(float value) {
