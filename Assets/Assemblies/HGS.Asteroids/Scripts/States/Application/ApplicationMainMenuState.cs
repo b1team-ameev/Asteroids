@@ -16,7 +16,12 @@ namespace HGS.Asteroids.States.StateApplication {
             base.Enter();
 
             transitions.Add(new StateTransition(new EventDecision(EventKey.OnAppGoToGameState), new ApplicationAsteroidsGameState(stateMachine)));
+            
+            # if !UNITY_EDITOR
+            
             transitions.Add(new StateTransition(new EventDecision(EventKey.OnAppExit), new ApplicationExitState(stateMachine)));
+
+            #endif
 
             OnEnter();
 
