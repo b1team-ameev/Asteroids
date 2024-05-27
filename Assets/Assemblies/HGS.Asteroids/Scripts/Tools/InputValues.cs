@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace HGS.Tools
+namespace HGS.Asteroids.Tools
 {
     public partial class @InputValues: IInputActionCollection2, IDisposable
     {

@@ -9,13 +9,13 @@ namespace HGS.Asteroids.Services {
         public bool IsPause { get; private set; }
         private bool IsPausePressed;
 
-        private HGS.Tools.InputValues inputValues;
+        private HGS.Asteroids.Tools.InputValues inputValues;
 
         #region Awake/Start/Update/FixedUpdate
 
         private void Awake() {
 
-            inputValues = new HGS.Tools.InputValues();
+            inputValues = new HGS.Asteroids.Tools.InputValues();
 
         }
 

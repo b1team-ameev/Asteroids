@@ -24,7 +24,7 @@ namespace HGS.Asteroids.Services {
             
         }
 
-        private HGS.Tools.InputValues inputValues;
+        private HGS.Asteroids.Tools.InputValues inputValues;
 
         private bool IsWork {
 
@@ -40,7 +40,7 @@ namespace HGS.Asteroids.Services {
 
         private void Awake() {
 
-            inputValues = new HGS.Tools.InputValues();
+            inputValues = new HGS.Asteroids.Tools.InputValues();
 
         }
 
