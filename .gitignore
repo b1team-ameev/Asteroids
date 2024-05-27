@@ -1,2 +1,11 @@
+/.vscode
+/Asteroids_BurstDebugInformation_DoNotShip
+/Library
+/Logs
+/Temp
+/UserSettings
 
-.vscode/extensions.json
+*.csproj
+*.sln
+*.apk
+*.aab

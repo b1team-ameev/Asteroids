@@ -1,0 +1,22 @@
+{
+    "name": "HGS.Asteroids.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cd07d1b387e2998478993733f2c041c5",
+        "GUID:c06b9ea185fec104ba636f91d4073394",
+        "GUID:92723ee5e5c49bd4fb5eb79ceb407bcb",
+        "GUID:b628e35dab4907b499628d91d7fd168d",
+        "GUID:b6b92674c4bc1f4459cdc47b82905d6f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
