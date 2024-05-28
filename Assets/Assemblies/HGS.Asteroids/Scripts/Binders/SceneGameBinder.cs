@@ -26,18 +26,14 @@ namespace HGS.Asteroids.Binders {
         private void BindSpaceship() {
             
             // выриант генерации через SpawnerSpaceship
-            Container.BindFromPrefab<Spaceship>(SpaceshipPrefab);
-            Container.BindAsSingle<Spaceship>(false);
+            Container.BindFromPrefab<Spaceship>(SpaceshipPrefab).AsSingle(false);
 
         }
 
         private void BindInputValues() {
             
-            Container.BindFromPrefab<InputValuesPlayer>(InputValuesPlayerPrefab);
-            Container.BindAsSingle<InputValuesPlayer>();
-
-            Container.BindFromPrefab<InputValuesUI>(InputValuesUIPrefab);
-            Container.BindAsSingle<InputValuesUI>();
+            Container.BindFromPrefab<InputValuesPlayer>(InputValuesPlayerPrefab).AsSingle();
+            Container.BindFromPrefab<InputValuesUI>(InputValuesUIPrefab).AsSingle();
 
         }
         

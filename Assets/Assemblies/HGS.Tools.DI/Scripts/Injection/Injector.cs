@@ -15,7 +15,7 @@ namespace HGS.Tools.DI.Injection {
 
             }
             
-            MethodInfo resolveMethod = typeof(GlobalContext).GetMethod("Resolve", BindingFlags.Static | BindingFlags.Public);
+            MethodInfo resolveMethod = typeof(GlobalContext).GetMethod("ResolveOrRemember", BindingFlags.Static | BindingFlags.Public);
 
             if (resolveMethod != null) {
 
@@ -39,7 +39,7 @@ namespace HGS.Tools.DI.Injection {
                             foreach(var param in arParams) {
 
                                 MethodInfo resolveMethodVariant = resolveMethod.MakeGenericMethod(new Type[] { param.ParameterType });
-                                arguments[i++] = resolveMethodVariant.Invoke(null, null);
+                                arguments[i++] = resolveMethodVariant.Invoke(null, new object[]{ iObject });
                                 
                             }
 

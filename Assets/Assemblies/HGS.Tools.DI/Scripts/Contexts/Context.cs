@@ -13,7 +13,7 @@ namespace HGS.Tools.DI.Contexts {
 
         protected void Awake() {
 
-            Container = new DIContainer();
+            Container = new DIContainer(this);
 
             GlobalContext.AddContext(this);
 
@@ -52,6 +52,12 @@ namespace HGS.Tools.DI.Contexts {
                 }
 
             }
+
+        }
+
+        public void OnBind<T>() {
+
+            GlobalContext.OnBind<T>();
 
         }
 

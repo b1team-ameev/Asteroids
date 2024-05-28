@@ -29,8 +29,7 @@ namespace HGS.Asteroids.Binders {
 
         private void BindApp() {
             
-            Container.BindFromPrefab<GameApplication>(GameApplicationPrefab);
-            Container.BindAsSingle<GameApplication>();
+            Container.BindFromPrefab<GameApplication>(GameApplicationPrefab).AsSingle();
 
         }
 
@@ -38,15 +37,13 @@ namespace HGS.Asteroids.Binders {
             
             Container.BindTo<ICollection<AudioClip>, SoundCollection>();
 
-            Container.BindFromPrefab<Sounds>(SoundsPrefab);
-            Container.BindAsSingle<Sounds>();
+            Container.BindFromPrefab<Sounds>(SoundsPrefab).AsSingle();
 
         }
 
         private void BindEvents() {
             
-            Container.BindFromPrefab<Events>(EventsPrefab);
-            Container.BindAsSingle<Events>();
+            Container.BindFromPrefab<Events>(EventsPrefab).AsSingle();
 
         }
     }

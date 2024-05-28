@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HGS.Tools.DI.Contexts;
 using HGS.Tools.DI.Factories;
 
-namespace HGS.Tools.DI.Contexts {
+namespace HGS.Tools.DI {
 
     public class DIContainer {
         
         private readonly Dictionary<Type, IFactory> binds = new Dictionary<Type, IFactory>();
+        
+        private IContext context;
+
+        public DIContainer(IContext context) {
+
+            this.context = context;
+
+        }
 
         public void Destroy() {
             
@@ -16,6 +25,8 @@ namespace HGS.Tools.DI.Contexts {
                 binds?.Clear();
 
             }
+
+            context = null;
 
         }   
 
@@ -59,7 +70,7 @@ namespace HGS.Tools.DI.Contexts {
 
         }    
 
-        public void BindAsSingle<TInterface, TType>(bool isCreate = true) where TType: TInterface {
+        public DIContainerWrapper<TInterface, TType> BindAsSingle<TInterface, TType>(bool isCreate = true) where TType: TInterface {
             
             lock(binds) {
 
@@ -77,19 +88,23 @@ namespace HGS.Tools.DI.Contexts {
 
                     }
 
+                    context?.OnBind<TInterface>();
+
                 }
 
             }
 
+            return new DIContainerWrapper<TInterface, TType>(this);
+
         }         
 
-        public void BindAsSingle<TType>(bool isCreate = true) {
+        public DIContainerWrapper<TType, TType> BindAsSingle<TType>(bool isCreate = true) {
             
-            BindAsSingle<TType, TType>(isCreate);
+            return BindAsSingle<TType, TType>(isCreate);
 
         }   
 
-        public void BindTo<TInterface, TType>() where TType: TInterface, new() {
+        public DIContainerWrapper<TInterface, TType> BindTo<TInterface, TType>() where TType: TInterface, new() {
             
             lock(binds) {
 
@@ -103,9 +118,11 @@ namespace HGS.Tools.DI.Contexts {
 
             }
 
+            return new DIContainerWrapper<TInterface, TType>(this);
+
         }    
 
-        public void BindFromInstance<TInterface, TType>(TType instance) where TType: TInterface {
+        public DIContainerWrapper<TInterface, TType> BindFromInstance<TInterface, TType>(TType instance) where TType: TInterface {
             
             lock(binds) {
 
@@ -119,9 +136,17 @@ namespace HGS.Tools.DI.Contexts {
 
             }
 
+            return new DIContainerWrapper<TInterface, TType>(this);
+
+        }    
+
+        public DIContainerWrapper<TType, TType> BindFromInstance<TType>(TType instance) {
+            
+            return BindFromInstance<TType, TType>(instance);
+
         } 
 
-        public void BindFromPrefab<TInterface, TType>(UnityEngine.Object prefab) where TType: UnityEngine.Object {
+        public DIContainerWrapper<TInterface, TType> BindFromPrefab<TInterface, TType>(UnityEngine.Object prefab) where TType: UnityEngine.Object, TInterface {
             
             lock(binds) {
 
@@ -135,11 +160,19 @@ namespace HGS.Tools.DI.Contexts {
 
             }
 
+            return new DIContainerWrapper<TInterface, TType>(this);
+
         }
 
-        public void BindFromPrefab<TType>(UnityEngine.Object prefab) where TType: UnityEngine.Object {
+        public DIContainerWrapper<TType, TType> BindFromPrefab<TType>(UnityEngine.Object prefab) where TType: UnityEngine.Object {
             
-            BindFromPrefab<TType, TType>(prefab);
+            return BindFromPrefab<TType, TType>(prefab);
+
+        }
+
+        public void BindIsOver<TInterface>() {
+
+            context?.OnBind<TInterface>();
 
         }
 
