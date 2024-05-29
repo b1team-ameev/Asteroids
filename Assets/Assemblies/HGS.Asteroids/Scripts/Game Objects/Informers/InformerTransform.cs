@@ -1,73 +1,53 @@
 using HGS.Enums;
 using HGS.Tools.Services.ServiceEvents;
-using HGS.Tools.DI.Injection;
 using UnityEngine;
 
 namespace HGS.Asteroids.GameObjects.Informers {
 
-    public class InformerTransform: InjectedMonoBehaviour {
+    public class InformerTransform: IInformer {
         
         private const float DELTA_TIME_LIMIT = 0.1f;
 
-        private Transform thisTransform;
+        private Events events;
+        private Transform transform;
 
         private float speed;
         private float time;
         private Vector2 prevPosition;
 
-        private Events events;
-
-        [Inject]
-        private void Constructor(Events events) {
+        public InformerTransform(Events events, Transform transform) {
             
             this.events = events;
+            this.transform = transform;
 
         }
 
-        #region Awake/Start/Update/FixedUpdate
-
-        private new void Awake() {
-
-            base.Awake();
-
-            thisTransform = transform;
-
-        }
-        
-        private void Update() {
-
-            ShowData();
-
-        }
-        
-        private void OnDestroy() {
-
-            Show();
-
-        }
-
-        #endregion
-
-        private void ShowData() {
+        public void ShowInfo() {
             
-            if (thisTransform != null) {
+            if (transform != null) {
 
-                Show(thisTransform.position.x, thisTransform.position.y, speed, thisTransform.rotation.eulerAngles.z);
+                Show(transform.position.x, transform.position.y, speed, transform.rotation.eulerAngles.z);
                 
                 // оптимизация вычисления скорости
                 time += Time.deltaTime;
 
                 if (time >= DELTA_TIME_LIMIT) {
 
-                    speed = (prevPosition - (Vector2)thisTransform.position).magnitude / time;
+                    speed = (prevPosition - (Vector2)transform.position).magnitude / time;
                     time = 0f;
 
-                    prevPosition = thisTransform.position; 
+                    prevPosition = transform.position; 
 
                 }
 
             }
 
+        }
+        
+        public void Clear() {
+            
+            Show();
+            
         }
 
         private void Show(float x = default, float y = default, float speed = default, float angle = default) {

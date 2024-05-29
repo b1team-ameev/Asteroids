@@ -5,6 +5,8 @@ using HGS.Asteroids.Services;
 using HGS.Tools.States;
 using HGS.Tools.DI.Injection;
 using UnityEngine;
+using HGS.Asteroids.GameObjects.Informers;
+using HGS.Tools.Services.ServiceEvents;
 
 namespace HGS.Asteroids.States.StateSpaceship {
 
@@ -17,9 +19,16 @@ namespace HGS.Asteroids.States.StateSpaceship {
         private bool isFired;
         private bool isAltFired;
 
-        [Inject]
-        private void Constructor(InputValuesPlayer inputValues) {
+        private Events events;
 
+        private IInformer informerBulletCount;
+        private IInformer informerTimeBeforeReload;
+        private IInformer informerTransform;
+
+        [Inject]
+        private void Constructor(Events events, InputValuesPlayer inputValues) {
+
+            this.events = events;
             this.inputValues = inputValues;
 
         }
@@ -35,11 +44,20 @@ namespace HGS.Asteroids.States.StateSpaceship {
             transitions.Add(new StateTransition(new DamageNormalDecision(), new SpaceshipDamagedState(stateMachine)));
             transitions.Add(new StateTransition(new DamageFatalDecision(), new SpaceshipDamagedState(stateMachine)));
 
+            informerBulletCount = new InformerBulletCount(events, stateMachine?.GetComponent<ILimitedSupplyWeapon>());
+            informerTimeBeforeReload = new InformerTimeBeforeReload(events, stateMachine?.GetComponent<IReloadableWeapon>());
+            informerTransform = new InformerTransform(events, stateMachine?.Base());
+
         }
 
         public override void Exit(bool isFinal = false) {
 
             inputValues = null;
+            events = null;
+
+            informerBulletCount?.Clear();
+            informerTimeBeforeReload?.Clear();
+            informerTransform?.Clear();
 
             base.Exit(isFinal);
 
@@ -60,6 +78,10 @@ namespace HGS.Asteroids.States.StateSpaceship {
 
             base.LogicUpdate();
 
+            informerBulletCount?.ShowInfo();
+            informerTimeBeforeReload?.ShowInfo();
+            informerTransform?.ShowInfo();
+
             Spaceship spaceshipEngine = stateMachine?.GetComponent<Spaceship>();
 
             if (spaceshipEngine == null) {
@@ -72,14 +94,25 @@ namespace HGS.Asteroids.States.StateSpaceship {
             if (isAltFired) {
 
                 IImbalanceWeapon weapon = stateMachine?.GetComponent<IImbalanceWeapon>();
-                weapon.Shoot(spaceshipEngine.FlightDirection);
+
+                if (weapon != null && weapon.CanShoot()) {
+
+                    weapon.Shoot(spaceshipEngine.FlightDirection);
+
+                }
 
                 isAltFired = false;
+                
             }
             else if (isFired) {
 
                 IStandartWeapon weapon = stateMachine?.GetComponent<IStandartWeapon>();
-                weapon.Shoot(spaceshipEngine.FlightDirection);
+
+                if (weapon != null && weapon.CanShoot()) {
+
+                    weapon.Shoot(spaceshipEngine.FlightDirection);
+
+                }
 
                 isFired = false;
             }
@@ -95,11 +128,14 @@ namespace HGS.Asteroids.States.StateSpaceship {
 
             if (spaceshipEngine != null) {
 
-                spaceshipEngine.Rotate(move.x);
-                spaceshipEngine.Fly(move.y == 1f);
+                spaceshipEngine.SetRotateDirection(move.x);
+                spaceshipEngine.SetFlighting(move.y == 1f);
+
+                spaceshipEngine.Rotate();
+                spaceshipEngine.Fly();
 
             }
-
+            
         }
 
     }

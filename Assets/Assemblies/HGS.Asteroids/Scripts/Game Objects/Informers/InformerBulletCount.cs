@@ -1,56 +1,34 @@
 using HGS.Asteroids.GameObjects.Weapons;
 using HGS.Tools.Services.ServiceEvents;
 using HGS.Enums;
-using HGS.Tools.DI.Injection;
-using UnityEngine;
 
 namespace HGS.Asteroids.GameObjects.Informers {
 
-    [RequireComponent(typeof(ILimitedSupplyWeapon))]
-    public class InformerBulletCount: InjectedMonoBehaviour {
+    public class InformerBulletCount: IInformer {
         
-        private ILimitedSupplyWeapon limitedSupplyWeapon;
-
-        private Events events;
-
-        [Inject]
-        private void Constructor(Events events) {
+        private readonly Events events;
+        private readonly ILimitedSupplyWeapon limitedSupplyWeapon;
+        
+        public InformerBulletCount(Events events, ILimitedSupplyWeapon limitedSupplyWeapon) {
             
             this.events = events;
+            this.limitedSupplyWeapon = limitedSupplyWeapon;
 
         }
 
-        #region Awake/Start/Update/FixedUpdate
-
-        private new void Awake() {
-
-            base.Awake();
-
-            limitedSupplyWeapon = GetComponent<ILimitedSupplyWeapon>();
-
-        }
-        
-        private void Update() {
-
-            ShowData();
-
-        }
-        
-        private void OnDestroy() {
-
-            Show();
-
-        }
-
-        #endregion
-
-        private void ShowData() {
+        public void ShowInfo() {
             
             if (limitedSupplyWeapon != null) {
 
                 Show(limitedSupplyWeapon.BulletCount);
 
             }
+            
+        }
+        
+        public void Clear() {
+            
+            Show();
             
         }
 

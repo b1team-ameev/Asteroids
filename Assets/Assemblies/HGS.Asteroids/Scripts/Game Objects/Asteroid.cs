@@ -21,6 +21,12 @@ namespace HGS.Asteroids.GameObjects {
 
             thisTransform = transform;
 
+        }
+
+        #endregion
+
+        public void RandomRotate() {
+
             if (thisTransform != null) {
 
                 thisTransform.Rotate(new Vector3(0f, 0f, Random.value * 360f));
@@ -29,23 +35,13 @@ namespace HGS.Asteroids.GameObjects {
 
         }
 
-        private void FixedUpdate() {
+        public void Move() {
 
-            Move();
+            if (thisTransform != null) {
 
-        }
-
-        #endregion
-
-        private void Move() {
-
-            if (thisTransform == null) {
-
-                return;
+                thisTransform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
 
             }
-
-            thisTransform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
 
         }
 

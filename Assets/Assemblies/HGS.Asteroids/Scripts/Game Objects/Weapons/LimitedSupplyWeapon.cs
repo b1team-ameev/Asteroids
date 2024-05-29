@@ -12,16 +12,12 @@ namespace HGS.Asteroids.GameObjects.Weapons {
         
         public override void Shoot(Vector2 direction) {
             
-            if (CanShoot()) {
-
-                base.Shoot(direction);
-                BulletCount--;
-                
-            }
+            base.Shoot(direction);
+            BulletCount--;
 
         }
 
-        protected override bool CanShoot() {
+        public override bool CanShoot() {
 
             return BulletCount > 0 && base.CanShoot();
 

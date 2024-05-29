@@ -1,56 +1,34 @@
 using HGS.Asteroids.GameObjects.Weapons;
 using HGS.Tools.Services.ServiceEvents;
-using HGS.Tools.DI.Injection;
-using UnityEngine;
 using HGS.Enums;
 
 namespace HGS.Asteroids.GameObjects.Informers {
 
-    [RequireComponent(typeof(IReloadableWeapon))]
-    public class InformerTimeBeforeReload: InjectedMonoBehaviour {
+    public class InformerTimeBeforeReload: IInformer {
         
-        private IReloadableWeapon reloadableWeapon;
+        private readonly Events events;
+        private readonly IReloadableWeapon reloadableWeapon;
 
-        private Events events;
-
-        [Inject]
-        private void Constructor(Events events) {
+        public InformerTimeBeforeReload(Events events, IReloadableWeapon reloadableWeapon) {
             
             this.events = events;
+            this.reloadableWeapon = reloadableWeapon;
 
         }
 
-        #region Awake/Start/Update/FixedUpdate
-
-        private new void Awake() {
-
-            base.Awake();
-
-            reloadableWeapon = GetComponent<IReloadableWeapon>();
-
-        }
-        
-        private void Update() {
-
-            ShowData();
-
-        }
-        
-        private void OnDestroy() {
-
-            Show();
-
-        }
-
-        #endregion
-
-        private void ShowData() {
+        public void ShowInfo() {
             
             if (reloadableWeapon != null) {
 
                 Show(reloadableWeapon.TimeBeforeReload);
 
             }
+            
+        }
+        
+        public void Clear() {
+            
+            Show();
             
         }
 

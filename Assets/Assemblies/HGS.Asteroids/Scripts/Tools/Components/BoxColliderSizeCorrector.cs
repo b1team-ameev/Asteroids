@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace HGS.Asteroids.Tools.Components {
 
     [RequireComponent(typeof(BoxCollider2D))]
-    public class BoxColliderSizeCorrector : MonoBehaviour {
+    public class BoxColliderSizeCorrector: MonoBehaviour {
 
         [field:SerializeField]
         private bool IsSetWidth { get; set; }
@@ -14,6 +15,14 @@ namespace HGS.Asteroids.Tools.Components {
 
         private void Start() {
             
+            SizeCorrect();
+
+        }
+
+        #endregion
+
+        private void SizeCorrect() {
+
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             RectTransform parentTransform = transform.parent != null ? transform.parent.GetComponent<RectTransform>() : null;
 
@@ -32,10 +41,8 @@ namespace HGS.Asteroids.Tools.Components {
                 }
 
             }
-
+            
         }
-
-        #endregion
 
     }
 

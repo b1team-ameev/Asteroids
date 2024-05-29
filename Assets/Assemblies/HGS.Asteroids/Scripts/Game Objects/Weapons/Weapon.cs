@@ -25,15 +25,11 @@ namespace HGS.Asteroids.GameObjects.Weapons {
 
         public virtual void Shoot(Vector2 direction) {
             
-            if (CanShoot()) {
-
-                SpawnBullet(direction);
-
-            }
+            SpawnBullet(direction);
 
         }
 
-        protected virtual bool CanShoot() {
+        public virtual bool CanShoot() {
 
             return lastShootTime == default || Time.time - lastShootTime > Timeout;
 

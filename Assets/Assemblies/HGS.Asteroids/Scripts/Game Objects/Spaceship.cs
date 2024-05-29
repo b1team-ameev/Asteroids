@@ -61,13 +61,6 @@ namespace HGS.Asteroids.GameObjects {
 
         }
 
-        private void FixedUpdate() {
-
-            Rotate();
-            Fly();
-
-        }
-
         #endregion
 
         private void AnimateFlight() {
@@ -80,13 +73,13 @@ namespace HGS.Asteroids.GameObjects {
 
         }
 
-        public void Rotate(float rotateDirection) {
+        public void SetRotateDirection(float rotateDirection) {
 
             this.rotateDirection = -rotateDirection;
 
         }
 
-        private void Rotate() {
+        public void Rotate() {
 
             if (baseTransform == null) {
 
@@ -98,7 +91,8 @@ namespace HGS.Asteroids.GameObjects {
 
         }
 
-        public void Fly(bool isFlighting) {
+        // TODO: можно (нужно?) ли вынести логику
+        public void SetFlighting(bool isFlighting) {
 
             if (this.isFlighting != isFlighting) {
 
@@ -143,7 +137,7 @@ namespace HGS.Asteroids.GameObjects {
 
         }
 
-        private void Fly() {
+        public void Fly() {
 
             if (thisTransform == null || currenCurve == null) {
 

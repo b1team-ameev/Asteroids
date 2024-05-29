@@ -53,7 +53,7 @@ namespace HGS.Asteroids.States.StateUfoAI {
 
                 IWeapon weapon = stateMachine.GetComponent<IWeapon>();
 
-                if (weapon != null) {
+                if (weapon != null && weapon.CanShoot()) {
 
                     if (spaceshipTransform == null || !(Random.value < stateMachine.AimedShootingProbability)) {
 

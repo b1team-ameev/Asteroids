@@ -33,18 +33,11 @@ namespace HGS.Asteroids.States.StateBullet {
             base.PhysicsUpdate();
             
             // движение
-            Move();
-
-        }
-
-        public void Move() {
-
             Bullet bullet = stateMachine?.GetComponent<Bullet>();
-            Transform thisTransform = stateMachine?.GetComponent<Transform>();
 
-            if (bullet != null && thisTransform != null) {
+            if (bullet != null) {
 
-                thisTransform.Translate(Vector2.up * bullet.Speed * Time.fixedDeltaTime);
+                bullet.Move();
 
             }
 
