@@ -30,6 +30,12 @@ namespace HGS.Asteroids.GameObjects.Damagers {
 
         #endregion
 
+        public void ResetStatus() {
+
+            DamageReceived = Damage.None;
+
+        }
+
     }
 
 }

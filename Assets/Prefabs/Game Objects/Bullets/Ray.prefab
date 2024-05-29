@@ -92,6 +92,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7790811529857851799, guid: 11d091a33ca237f4d92e1475df15428f, type: 3}
+      propertyPath: <Sound>k__BackingField
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3735825744044952120, guid: 11d091a33ca237f4d92e1475df15428f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

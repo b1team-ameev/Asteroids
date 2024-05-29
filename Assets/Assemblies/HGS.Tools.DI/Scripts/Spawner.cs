@@ -16,7 +16,7 @@ namespace HGS.Tools.DI {
 
         #region Awake/Start/Update/FixedUpdate
 
-        // !!! можно (нужно?) усложнить, отвязав спавн от Start
+        // TODO: можно (нужно?) усложнить, отвязав спавн от Start
         protected void Start() {
 
             Spawn(); 
@@ -27,7 +27,7 @@ namespace HGS.Tools.DI {
 
         #endregion
 
-        // !!! можно (нужно?) усложнить, добавив свой интерфейс
+        // TODO: можно (нужно?) усложнить, добавив свой интерфейс
         public virtual T Spawn() {
 
             return (T)factory?.Create();

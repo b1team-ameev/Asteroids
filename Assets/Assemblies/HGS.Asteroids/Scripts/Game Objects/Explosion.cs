@@ -1,21 +1,39 @@
+using HGS.Enums;
+using HGS.Tools.DI.Injection;
+using HGS.Tools.Services.Pools;
 using UnityEngine;
 
 namespace HGS.Asteroids.GameObjects {
 
-    public class Explosion: MonoBehaviour, IExplosion {
+    public class Explosion: InjectedMonoBehaviour, IExplosion {
         
         [field:SerializeField]
-        private GameObject Prefab { get; set; }
+        private ObjectVariant ExplosionVariant { get; set; }
+
+        private IPoolStack poolStack;
+
+        [Inject]
+        private void Constructor(IPoolStack poolStack) {
+            
+            this.poolStack = poolStack;
+
+        }
 
         public void Exploud() {
 
-            if (Prefab != null) {
+            Transform thisTransform = transform;
 
-                Transform thisTransform = transform;
+            GameObject explosion = poolStack?.Get(ExplosionVariant) as GameObject;
 
-                if (thisTransform != null) {
+            if (explosion != null && thisTransform != null) {
 
-                    Instantiate(Prefab, thisTransform.position, Quaternion.identity, thisTransform.parent);
+                Transform explosionTransform = explosion.transform;
+
+                if (explosionTransform != null) {
+
+                    explosionTransform.parent = thisTransform.parent;
+
+                    explosionTransform.position = thisTransform.position;
 
                 }
 

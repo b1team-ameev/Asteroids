@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: <Prefab>k__BackingField
       value: 
       objectReference: {fileID: 4203247916944581195, guid: ec7ddc48a9f8e9549aae2faa14b77b49, type: 3}
+    - target: {fileID: 3672670587805892499, guid: dda60f3475f5cc34f91e494c72c9f996, type: 3}
+      propertyPath: <ExplosionVariant>k__BackingField
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 3792004265788829944, guid: dda60f3475f5cc34f91e494c72c9f996, type: 3}
       propertyPath: <MaxSpeed>k__BackingField
       value: 3

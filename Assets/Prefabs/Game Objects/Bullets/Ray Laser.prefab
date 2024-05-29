@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ray Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 5277514487883281327, guid: 68c5e51e1fbbe7240a6579cb239b9cb1, type: 3}
+      propertyPath: <TimeBeforeDestruction>k__BackingField
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5919704522648016714, guid: 68c5e51e1fbbe7240a6579cb239b9cb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

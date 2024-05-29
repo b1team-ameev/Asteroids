@@ -6,7 +6,7 @@ namespace HGS.Asteroids.States.StateBullet {
 
         #region Awake/Start/Update/FixedUpdate
 
-        private void Start() {
+        private void OnEnable() {
 
             Initialize(new BulletActiveState(this));
 

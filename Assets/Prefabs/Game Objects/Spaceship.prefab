@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bf0ce2af6cc9c4183eb0d34279d487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 8331197406452874895, guid: ad46e328bacb1d74d9bbe260a9ef66d5, type: 3}
+  <BulletVariant>k__BackingField: 10
   <Timeout>k__BackingField: 0.3
 --- !u!114 &-1682630101830456940
 MonoBehaviour:
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65c4c613ccc68943bfcbb281a5159b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 5739883133353405365, guid: 5b31b14f27464e34b92f686998726ceb, type: 3}
+  <BulletVariant>k__BackingField: 30
   <Timeout>k__BackingField: 0.3
   <MaxBulletCount>k__BackingField: 5
   <BulletCount>k__BackingField: 5
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e611396f21cd644bd77613a48727d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 4203247916944581195, guid: 020da4149766bea49b8f6d6477e40417, type: 3}
+  <ExplosionVariant>k__BackingField: 100
 --- !u!114 &-2515494652555984615
 MonoBehaviour:
   m_ObjectHideFlags: 0

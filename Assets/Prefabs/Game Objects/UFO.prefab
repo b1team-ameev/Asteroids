@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bf0ce2af6cc9c4183eb0d34279d487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 8331197406452874895, guid: b885f45e3ecd18146b25fc8db8380c3b, type: 3}
+  <BulletVariant>k__BackingField: 20
   <Timeout>k__BackingField: 2
 --- !u!114 &8913974015529610822
 MonoBehaviour:
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e611396f21cd644bd77613a48727d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 4203247916944581195, guid: 020da4149766bea49b8f6d6477e40417, type: 3}
+  <ExplosionVariant>k__BackingField: 100
 --- !u!114 &-7527688043017117501
 MonoBehaviour:
   m_ObjectHideFlags: 0

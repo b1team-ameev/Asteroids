@@ -1,13 +1,25 @@
+using HGS.Enums;
+using HGS.Tools.DI.Injection;
+using HGS.Tools.Services.Pools;
 using UnityEngine;
 
 namespace HGS.Asteroids.GameObjects.Weapons {
 
-    public abstract class Weapon: MonoBehaviour, IWeapon {
+    public abstract class Weapon: InjectedMonoBehaviour, IWeapon {
 
         [field:SerializeField]
-        private GameObject BulletPrefab { get; set; }
+        private ObjectVariant BulletVariant { get; set; }
         [field:SerializeField]
         private float Timeout { get; set; }
+
+        private IPoolStack poolStack;
+
+        [Inject]
+        private void Constructor(IPoolStack poolStack) {
+            
+            this.poolStack = poolStack;
+
+        }
 
         protected float lastShootTime;
 
@@ -31,10 +43,20 @@ namespace HGS.Asteroids.GameObjects.Weapons {
 
             Transform thisTransform = transform;
 
-            if (BulletPrefab != null && thisTransform != null) {
+            GameObject bullet = poolStack?.Get(BulletVariant) as GameObject;
 
-                Instantiate(BulletPrefab, thisTransform.position + (Vector3)direction.normalized * 0.5f,
-                    Quaternion.FromToRotation(Vector2.up, direction), thisTransform != null ? thisTransform.parent : thisTransform);
+            if (bullet != null && thisTransform != null) {
+
+                Transform bulletTransform = bullet.transform;
+
+                if (bulletTransform != null) {
+
+                    bulletTransform.parent = thisTransform.parent;
+
+                    bulletTransform.position = thisTransform.position + (Vector3)direction.normalized * 0.5f;
+                    bulletTransform.rotation = Quaternion.FromToRotation(Vector2.up, direction);
+
+                }
 
             }
 
