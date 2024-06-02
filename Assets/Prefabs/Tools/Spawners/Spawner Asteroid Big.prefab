@@ -115,5 +115,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4792435431884526507, guid: d6cad436d543ccc48a91d3c5fa51169a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2086733306771346602}
   m_SourcePrefab: {fileID: 100100000, guid: d6cad436d543ccc48a91d3c5fa51169a, type: 3}
+--- !u!1 &5098397195643572313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4792435431884526507, guid: d6cad436d543ccc48a91d3c5fa51169a, type: 3}
+  m_PrefabInstance: {fileID: 307093180696216562}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2086733306771346602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098397195643572313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e340f924fc1de564e8e554a544c74b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Container>k__BackingField: {fileID: 0}
+  <IsSpawnOnStart>k__BackingField: 1
+  <IsUseSpawnPosition>k__BackingField: 1

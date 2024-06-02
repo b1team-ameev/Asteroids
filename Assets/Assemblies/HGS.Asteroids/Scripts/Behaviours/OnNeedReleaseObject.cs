@@ -6,10 +6,10 @@ namespace HGS.Asteroids.Behaviours {
 
     public class OnNeedReleaseObject: StateMachineBehaviour {
 
-        private IPoolStack poolStack;
+        private PoolStock poolStack;
 
         [Inject]
-        private void Constructor(IPoolStack poolStack) {
+        private void Constructor(PoolStock poolStack) {
             
             this.poolStack = poolStack;
 

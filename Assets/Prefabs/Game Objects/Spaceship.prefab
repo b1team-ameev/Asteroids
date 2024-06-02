@@ -129,13 +129,7 @@ GameObject:
   - component: {fileID: 4151963595737542722}
   - component: {fileID: 3915004772970036717}
   - component: {fileID: 4990646927796193962}
-  - component: {fileID: 3583993116888259703}
-  - component: {fileID: 5941137580170612624}
-  - component: {fileID: 1150929684755197428}
-  - component: {fileID: -7065781043382628241}
-  - component: {fileID: -1682630101830456940}
-  - component: {fileID: 408271480665115058}
-  - component: {fileID: -2515494652555984615}
+  - component: {fileID: -5961350119355574433}
   m_Layer: 6
   m_Name: Spaceship
   m_TagString: Untagged
@@ -242,7 +236,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
---- !u!114 &3583993116888259703
+--- !u!114 &-5961350119355574433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,190 +245,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3029179846276276751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3b15dd45c998d4aba4e252f9302123, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b942f5766e14b4389e2bb7aae48461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <RotateAngle>k__BackingField: 360
-  <FlightPower>k__BackingField: 7.5
-  <FlightPowerAcceleration>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2.091457
-      outSlope: 2.091457
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.0259366
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.41790402
-      outSlope: 0.41790402
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.04514891
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  <FlightPowerDecay>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 3.5
-      value: 0
-      inSlope: -0.07572668
-      outSlope: -0.07572668
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.080086574
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  <AntiFlightPowerAcceleration>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  <AntiFlightPowerDecay>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &5941137580170612624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992b053315ec82d479a4cc356feaedc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1150929684755197428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7134bc3ed8150a54b84b7f413c280428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <DamageReceived>k__BackingField: 0
---- !u!114 &-7065781043382628241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bf0ce2af6cc9c4183eb0d34279d487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BulletVariant>k__BackingField: 10
-  <Timeout>k__BackingField: 0.3
---- !u!114 &-1682630101830456940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b65c4c613ccc68943bfcbb281a5159b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BulletVariant>k__BackingField: 30
-  <Timeout>k__BackingField: 0.3
-  <MaxBulletCount>k__BackingField: 5
-  <BulletCount>k__BackingField: 5
-  <ReloadTime>k__BackingField: 5
-  <TimeBeforeReload>k__BackingField: 0
---- !u!114 &408271480665115058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e611396f21cd644bd77613a48727d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ExplosionVariant>k__BackingField: 100
---- !u!114 &-2515494652555984615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029179846276276751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de5dcf9a10db204c8067d23f945d268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Sound>k__BackingField: 110
 --- !u!1 &6095136540476788221
 GameObject:
   m_ObjectHideFlags: 0

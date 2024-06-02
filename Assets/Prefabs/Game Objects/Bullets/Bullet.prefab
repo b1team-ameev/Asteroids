@@ -12,10 +12,7 @@ GameObject:
   - component: {fileID: 8362548434356668896}
   - component: {fileID: 1961689794639780974}
   - component: {fileID: 6073758983084551921}
-  - component: {fileID: -6286412472711057699}
-  - component: {fileID: -3740276756713681439}
-  - component: {fileID: 6939405769923589257}
-  - component: {fileID: -7790811529857851799}
+  - component: {fileID: 4901044728307642435}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
@@ -152,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &-6286412472711057699
+--- !u!114 &4901044728307642435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,46 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4920243204749338814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f425bdaf735d5409ae7c3c5855cd01, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b942f5766e14b4389e2bb7aae48461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 0
-  <TimeBeforeDestruction>k__BackingField: 0
---- !u!114 &-3740276756713681439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4920243204749338814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73184fa74e806a5438c50110032df4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6939405769923589257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4920243204749338814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71286fe167f11b48b127a02554b0aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 0
---- !u!114 &-7790811529857851799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4920243204749338814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4833865a07133944ea62f9b8084d181d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Sound>k__BackingField: 0

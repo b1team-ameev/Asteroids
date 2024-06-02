@@ -1,5 +1,6 @@
 using System;
 using HGS.Asteroids.GameObjects;
+using HGS.Asteroids.GameObjects.Spawners;
 using HGS.Tools.Services.EventActions;
 using UnityEngine;
 

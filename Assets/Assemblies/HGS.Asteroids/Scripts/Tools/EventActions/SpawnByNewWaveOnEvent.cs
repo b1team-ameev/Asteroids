@@ -3,6 +3,7 @@ using HGS.Asteroids.GameObjects;
 using UnityEngine;
 using HGS.Tools.Services.ServiceEvents;
 using HGS.Tools.Services.EventActions;
+using HGS.Asteroids.GameObjects.Spawners;
 
 namespace HGS.Asteroids.Tools.EventActions {
 

@@ -44,14 +44,7 @@ GameObject:
   - component: {fileID: -7438398466918489305}
   - component: {fileID: -682382701102011604}
   - component: {fileID: 2974514157065961094}
-  - component: {fileID: 3792004265788829944}
-  - component: {fileID: 5894165101821786807}
-  - component: {fileID: -816141191952271481}
-  - component: {fileID: 2887567961142238525}
-  - component: {fileID: -981471939565967593}
-  - component: {fileID: 5900827661236757331}
-  - component: {fileID: 3672670587805892499}
-  - component: {fileID: 1476100776960880853}
+  - component: {fileID: 360869950686612378}
   m_Layer: 7
   m_Name: Asteroid
   m_TagString: Untagged
@@ -158,7 +151,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.95
---- !u!114 &3792004265788829944
+--- !u!114 &360869950686612378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,104 +160,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3069630223356705951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 194c09594f8effb499e348f28134ce7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b942f5766e14b4389e2bb7aae48461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MinSpeed>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 2
---- !u!114 &5894165101821786807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f260adc150b1833459791f55be50affb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-816141191952271481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0076e26a53c182c4b9a911b042a32b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Prefabs>k__BackingField: []
-  <Container>k__BackingField: {fileID: 0}
-  <IsSpawnOnStart>k__BackingField: 0
-  <IsUseSpawnPosition>k__BackingField: 1
---- !u!114 &2887567961142238525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7134bc3ed8150a54b84b7f413c280428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <DamageReceived>k__BackingField: 0
---- !u!114 &-981471939565967593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71286fe167f11b48b127a02554b0aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 20
---- !u!114 &5900827661236757331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd9083c11756346b845480d8cb342f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Value>k__BackingField: 0
---- !u!114 &3672670587805892499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e611396f21cd644bd77613a48727d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ExplosionVariant>k__BackingField: 100
---- !u!114 &1476100776960880853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069630223356705951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de5dcf9a10db204c8067d23f945d268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Sound>k__BackingField: 100
 --- !u!1 &5291229062473065963
 GameObject:
   m_ObjectHideFlags: 0

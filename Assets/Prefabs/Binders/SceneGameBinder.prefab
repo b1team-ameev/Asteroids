@@ -47,8 +47,15 @@ MonoBehaviour:
   <InputValuesPlayerPrefab>k__BackingField: {fileID: 1822249122873472693, guid: ea30bc0e4ec04ab4296acff0103dabcb, type: 3}
   <InputValuesUIPrefab>k__BackingField: {fileID: 1822249122873472693, guid: 218505f905e63234d8405b9af392e79d, type: 3}
   <SpaceshipPrefab>k__BackingField: {fileID: 3029179846276276751, guid: 0f8f084318b516b40bea4c138bea543c, type: 3}
+  <AsteroidBigPrefab>k__BackingField: {fileID: 5898700857682087522, guid: e40307ed0439d06419b65a365d2c38ed, type: 3}
+  <AsteroidMiddlePrefab>k__BackingField: {fileID: 8227476233968577461, guid: c7f56c87bc4206a42905f9ebd5bc44cd, type: 3}
+  <AsteroidSmallPrefab>k__BackingField: {fileID: 7358460614895467933, guid: 201462b8c2176f046bd651900c18b01e, type: 3}
+  <UfoPrefab>k__BackingField: {fileID: 3029179846276276751, guid: bc8207999db06eb419bf812c04665e82, type: 3}
   <BulletGunPrefab>k__BackingField: {fileID: 8331197406452874895, guid: ad46e328bacb1d74d9bbe260a9ef66d5, type: 3}
   <BulletUfoPrefab>k__BackingField: {fileID: 8331197406452874895, guid: b885f45e3ecd18146b25fc8db8380c3b, type: 3}
   <RayLaserPrefab>k__BackingField: {fileID: 5739883133353405365, guid: 5b31b14f27464e34b92f686998726ceb, type: 3}
   <ExplosionPrefab>k__BackingField: {fileID: 4203247916944581195, guid: 020da4149766bea49b8f6d6477e40417, type: 3}
   <ExplosionSmallPrefab>k__BackingField: {fileID: 4203247916944581195, guid: ec7ddc48a9f8e9549aae2faa14b77b49, type: 3}
+  <SpaceshipMovementSettings>k__BackingField: {fileID: 11400000, guid: 587983ae1c8f8964d80f93ec4c67a19e, type: 2}
+  <SpaceshipWeaponSettings>k__BackingField: {fileID: 11400000, guid: 6ffccac6e0c2da043986fa8f499c332d, type: 2}
+  <UfoSettings>k__BackingField: {fileID: 11400000, guid: 5b1200fc83f18a64aac66ccbaab9cca0, type: 2}
