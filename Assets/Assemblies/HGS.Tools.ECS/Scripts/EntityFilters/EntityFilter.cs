@@ -14,6 +14,8 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         protected int componentCount = 0;
 
+        private readonly object lockObject = new ();
+
         public IReadOnlyCollection<EntityFiltered> Entities { 
             
             get {
@@ -78,7 +80,12 @@ namespace HGS.Tools.ECS.EntityFilters {
             }
 
             DestroyEntities();
-            this.entities = entities.AsReadOnly();
+
+            lock(lockObject) {
+
+                this.entities = entities.AsReadOnly();
+
+            }
 
             isFiltered = true;
 
@@ -92,20 +99,37 @@ namespace HGS.Tools.ECS.EntityFilters {
 
             if (index >= 0) {
 
-                IReadOnlyCollection<EntityFiltered> tempEntities = entities;
+                EntityFiltered entityFiltered = null;
 
-                if (tempEntities != null && index < tempEntities.Count) {
+                if (entities != null) {
 
-                    EntityFiltered entityFiltered = tempEntities.ElementAt(index);
+                    lock(lockObject) {
 
-                    List<EntityFiltered> entities = new List<EntityFiltered>(tempEntities);
-                    entities.RemoveAt(index);
+                        if (index < entities.Count) {
 
-                    this.entities = entities.AsReadOnly();
+                            entityFiltered = entities.ElementAt(index);
 
-                    entityFiltered?.Dispose();
+                            if (entityFiltered?.Entity == entity) {
+
+                                List<EntityFiltered> entities = new List<EntityFiltered>(this.entities);
+                                entities.RemoveAt(index);
+
+                                this.entities = entities.AsReadOnly();
+
+                            }
+                            else {
+
+                                entityFiltered = null;
+
+                            }
+
+                        }
+
+                    }
 
                 }
+
+                entityFiltered?.Dispose();
 
             }
 
@@ -143,10 +167,14 @@ namespace HGS.Tools.ECS.EntityFilters {
             // если сущность подходит, сохраняем ее
             else if (isEntityValid && entities != null) {
 
-                List<EntityFiltered> entities = new List<EntityFiltered>(this.entities);
-                entities.Add(entityFiltered);
+                lock(lockObject) {
 
-                this.entities = entities.AsReadOnly();
+                    List<EntityFiltered> entities = new List<EntityFiltered>(this.entities);
+                    entities.Add(entityFiltered);
+
+                    this.entities = entities.AsReadOnly();
+
+                }
 
             }
 
@@ -210,7 +238,11 @@ namespace HGS.Tools.ECS.EntityFilters {
 
             }
 
-            entities = null;
+            lock(lockObject) {
+
+                entities = null;
+
+            }
 
         }
 
