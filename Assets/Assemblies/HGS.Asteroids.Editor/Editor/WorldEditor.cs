@@ -41,7 +41,10 @@ namespace HGS.Asteroids.Editor {
 
                                 string name = system.GetType().Name;
 
-                                EditorGUILayout.LabelField($"Systems - {name}");
+                                var entities = system.EntityFilter?.Entities;
+                                count = entities != null ? entities.Count : 0; 
+
+                                EditorGUILayout.LabelField($"Systems - {name} ({count})");
 
                             }
 
