@@ -3,10 +3,11 @@ using HGS.Tools.ECS.Entities;
 using HGS.Asteroids.ECS.Components;
 using UnityEngine;
 using HGS.Tools.Services.Pools;
+using System;
 
 namespace HGS.Asteroids.ECS.EntityFactories {
 
-    public class ExplosionEntityFactory<T>: IEntityFactory {
+    public class ExplosionEntityFactory<T>: IEntityFactory, IDisposable {
 
         public readonly float timeBeforeDestruction;
         
@@ -54,7 +55,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
             
             poolStock = null;
             entityStock = null;

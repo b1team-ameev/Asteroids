@@ -213,7 +213,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 foreach(var entityFactory in entityFactories) {
 
-                    entityFactory.Value?.Destroy();
+                    (entityFactory.Value as IDisposable)?.Dispose();
 
                 }
 

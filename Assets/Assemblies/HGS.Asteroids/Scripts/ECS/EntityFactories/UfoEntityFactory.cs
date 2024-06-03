@@ -13,7 +13,7 @@ using HGS.Asteroids.Settings;
 
 namespace HGS.Asteroids.ECS.EntityFactories {
 
-    public class UfoEntityFactory: IEntityFactory {
+    public class UfoEntityFactory: IEntityFactory, System.IDisposable {
 
         private GameObject objectPrefab;
         private EntityStock entityStock;
@@ -106,7 +106,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
             
             objectPrefab = null;
             entityStock = null;

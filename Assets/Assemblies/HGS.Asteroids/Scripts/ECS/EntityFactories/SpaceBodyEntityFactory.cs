@@ -7,12 +7,10 @@ using HGS.Asteroids.Enums;
 using HGS.Enums;
 using HGS.Tools.Services.ServiceEvents;
 using HGS.Tools.Services.ServiceSounds;
-using HGS.Asteroids.ECS.Components.Weapons;
-using HGS.Asteroids.ECS.Entities;
 
 namespace HGS.Asteroids.ECS.EntityFactories {
 
-    public class SpaceBodyEntityFactory<T>: IEntityFactory where T: class, IComponent {
+    public class SpaceBodyEntityFactory<T>: IEntityFactory, System.IDisposable where T: class, IComponent {
 
         private GameObject objectPrefab;
         private EntityStock entityStock;
@@ -89,7 +87,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
             
             objectPrefab = null;
             entityStock = null;

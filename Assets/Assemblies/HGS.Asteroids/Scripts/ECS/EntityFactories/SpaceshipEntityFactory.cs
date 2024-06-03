@@ -1,3 +1,4 @@
+using System;
 using HGS.Asteroids.ECS.Components;
 using HGS.Asteroids.ECS.Components.Weapons;
 using HGS.Asteroids.ECS.Entities;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace HGS.Asteroids.ECS.EntityFactories {
 
-    public class SpaceshipEntityFactory: IEntityFactory {
+    public class SpaceshipEntityFactory: IEntityFactory, IDisposable {
 
         private EntityStock entityStock;
 
@@ -86,7 +87,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
             
             inputValuesPlayer = null;
             spaceshipFactory = null;

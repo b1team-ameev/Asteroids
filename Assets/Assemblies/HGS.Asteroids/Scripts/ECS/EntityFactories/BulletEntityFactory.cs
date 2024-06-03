@@ -8,10 +8,11 @@ using HGS.Tools.Services.ServiceSounds;
 using HGS.Enums;
 using HGS.Asteroids.Enums;
 using HGS.Asteroids.ECS.Components.Damagers;
+using System;
 
 namespace HGS.Asteroids.ECS.EntityFactories {
 
-    public class BulletEntityFactory<T>: IEntityFactory {
+    public class BulletEntityFactory<T>: IEntityFactory, IDisposable {
 
         private readonly float speed;
         public readonly float timeBeforeDestruction;
@@ -80,7 +81,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
             
             poolStock = null;
             entityStock = null;
