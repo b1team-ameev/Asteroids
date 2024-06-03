@@ -11,7 +11,8 @@ namespace HGS.Tools.ECS.Systems {
         private EntityStock entityStock;
         private readonly List<ISystem> systems = new ();
 
-        // TODO: не использовать
+        #if UNITY_EDITOR
+        
         public IReadOnlyCollection<ISystem> Systems {
 
             get {
@@ -21,6 +22,8 @@ namespace HGS.Tools.ECS.Systems {
             }
             
         }
+
+        #endif
 
         public SystemStock(EntityStock entityStock) {
 
