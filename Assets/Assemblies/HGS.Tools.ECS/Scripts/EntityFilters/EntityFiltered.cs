@@ -1,9 +1,10 @@
+using System;
 using HGS.Tools.ECS.Components;
 using HGS.Tools.ECS.Entities;
 
 namespace HGS.Tools.ECS.EntityFilters {
 
-    public class EntityFiltered {
+    public class EntityFiltered: IDisposable {
         
         public IEntity Entity { get; private set; }
 
@@ -44,7 +45,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
 
             components = null;
             Entity = null;

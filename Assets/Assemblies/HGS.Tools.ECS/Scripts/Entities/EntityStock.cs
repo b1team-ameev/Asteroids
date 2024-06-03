@@ -57,7 +57,7 @@ namespace HGS.Tools.ECS.Entities {
                 if (entities.Contains(entity)) {
 
                     entities.Remove(entity);
-                    entity?.Destroy();
+                    (entity as IDisposable)?.Dispose();
 
                     entitiesReadOnly = entities.AsReadOnly();
 
@@ -201,7 +201,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 foreach(var entity in entities) {
 
-                    entity?.Destroy();
+                    (entity as IDisposable)?.Dispose();
 
                 }
 

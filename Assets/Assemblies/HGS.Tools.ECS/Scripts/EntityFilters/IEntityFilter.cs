@@ -8,8 +8,6 @@ namespace HGS.Tools.ECS.EntityFilters {
         public IReadOnlyCollection<EntityFiltered> Entities { get; }
         public EntityFilterState EntityFilterState { get; }
 
-        public void Destroy();
-
     }
 
 }

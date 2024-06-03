@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using HGS.Tools.ECS.Components;
 using HGS.Tools.ECS.Entities;
 
 namespace HGS.Tools.ECS.EntityFilters {
 
-    public class EntityFilter<T1>: IEntityFilter where T1: IComponent {
+    public class EntityFilter<T1>: IEntityFilter, IDisposable where T1: IComponent {
         
         public EntityFilterState EntityFilterState { get; private set; }
 
@@ -47,7 +48,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         private void FilterEntities() {
 
-            if (EntityFilterState.IsFiltered) {
+            if (EntityFilterState.IsFiltered || entityStock == null) {
 
                 return;
 
@@ -68,7 +69,7 @@ namespace HGS.Tools.ECS.EntityFilters {
                     }
                     else {
 
-                        entityFiltered?.Destroy();
+                        (entityFiltered as IDisposable)?.Dispose();
 
                     }
 
@@ -83,7 +84,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         }
 
-        public void Destroy() {
+        public void Dispose() {
 
             entityStock = null;
 
@@ -99,7 +100,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
                 foreach(var entityFiltered in tempEntities) {
 
-                    entityFiltered?.Destroy();
+                    (entityFiltered as IDisposable)?.Dispose();
 
                 }
 

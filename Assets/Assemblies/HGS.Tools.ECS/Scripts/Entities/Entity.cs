@@ -4,7 +4,7 @@ using HGS.Tools.ECS.Components;
 
 namespace HGS.Tools.ECS.Entities {
 
-    public class Entity : IEntity {
+    public class Entity: IEntity, IDisposable {
 
         private readonly Dictionary<Type, IComponent> components = new ();
         
@@ -13,18 +13,6 @@ namespace HGS.Tools.ECS.Entities {
 
             IdObject = idObject;
             
-        }
-
-        public void Destroy() {
-
-            lock(components) {
-
-                components?.Clear();
-
-            }
-
-            IdObject = null;
-
         }
 
         public T GetComponent<T>() where T: IComponent {
@@ -99,6 +87,18 @@ namespace HGS.Tools.ECS.Entities {
             }
 
             return component;
+
+        }
+
+        public void Dispose() {
+
+            lock(components) {
+
+                components?.Clear();
+
+            }
+
+            IdObject = null;
 
         }
 

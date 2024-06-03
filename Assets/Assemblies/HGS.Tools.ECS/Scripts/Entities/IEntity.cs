@@ -12,8 +12,6 @@ namespace HGS.Tools.ECS.Entities {
 
         public T GetComponent<T>() where T: IComponent;
 
-        public void Destroy();
-
     }
 
 }

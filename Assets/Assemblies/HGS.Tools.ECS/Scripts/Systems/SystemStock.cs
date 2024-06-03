@@ -87,7 +87,7 @@ namespace HGS.Tools.ECS.Systems {
 
                 foreach(var system in systems) {
 
-                    system?.EntityFilter?.Destroy();
+                    (system?.EntityFilter as IDisposable)?.Dispose();
                     (system as IDisposable)?.Dispose();
 
                 }   
