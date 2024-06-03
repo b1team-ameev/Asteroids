@@ -103,6 +103,14 @@ namespace HGS.Asteroids.ECS.Systems {
             
         }
 
+        public new void Dispose() {
+
+            base.Dispose();
+
+            spaceshipObject = null;
+
+        }
+
     }
 
 }
