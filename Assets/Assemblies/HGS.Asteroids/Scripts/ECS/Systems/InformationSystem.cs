@@ -71,23 +71,23 @@ namespace HGS.Asteroids.ECS.Systems {
 
             if (transform != null) {
 
-                ShowTransform(transform.position.x, transform.position.y, transformComponent.speed, transform.rotation.eulerAngles.z);
+                ShowTransform(transform.position.x, transform.position.y, transformComponent.Speed, transform.rotation.eulerAngles.z);
                 
                 // оптимизация вычисления скорости
-                transformComponent.time += Time.deltaTime;
+                transformComponent.Time += Time.deltaTime;
 
-                if (transformComponent.time >= DELTA_TIME_LIMIT) {
+                if (transformComponent.Time >= DELTA_TIME_LIMIT) {
 
-                    transformComponent.speed = (transformComponent.prevPosition - (Vector2)transform.position).magnitude / transformComponent.time;
-                    transformComponent.time = 0f;
+                    transformComponent.Speed = (transformComponent.PrevPosition - (Vector2)transform.position).magnitude / transformComponent.Time;
+                    transformComponent.Time = 0f;
 
                     if (spaceshipMovementComponent != null) {
 
-                        transformComponent.speed = Mathf.Min(transformComponent.speed, spaceshipMovementComponent.FlightPower);
+                        transformComponent.Speed = Mathf.Min(transformComponent.Speed, spaceshipMovementComponent.FlightPower);
 
                     }
 
-                    transformComponent.prevPosition = transform.position; 
+                    transformComponent.PrevPosition = transform.position; 
 
                 }
 

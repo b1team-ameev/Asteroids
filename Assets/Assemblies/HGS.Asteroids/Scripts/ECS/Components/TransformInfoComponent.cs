@@ -9,11 +9,11 @@ namespace HGS.Asteroids.ECS.Components {
         }
 
         // промежуточное состояние
-        public float speed { get; set; }
+        public float Speed { get; set; }
 
-        public float time { get; set; }
+        public float Time { get; set; }
 
-        public Vector2 prevPosition { get; set; }
+        public Vector2 PrevPosition { get; set; }
 
     }
 

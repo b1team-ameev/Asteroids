@@ -56,16 +56,16 @@ namespace HGS.Tools.ECS.Entities {
 
                 if (entities.Contains(entity)) {
 
-                    entities.Remove(entity);
-                    (entity as IDisposable)?.Dispose();
-
+                    entities.Remove(entity);                    
                     entitiesReadOnly = entities.AsReadOnly();
 
-                    isNeedClearStates = true;
+                    isNeedClearStates = isNeedClearStates && true;
 
                 }
 
             }
+
+            (entity as IDisposable)?.Dispose();
 
             if (isNeedClearStates) {
 
