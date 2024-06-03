@@ -10,16 +10,7 @@ namespace HGS.Tools.ECS.Entities {
         private readonly List<IEntityFilter> entityFilters = new ();
         private readonly Dictionary<Type, IEntityFactory> entityFactories = new ();
         
-        private IReadOnlyCollection<IEntity> entitiesReadOnly;
-        public IReadOnlyCollection<IEntity> Entities { 
-
-            get {
-
-                return entitiesReadOnly;
-
-            }
-
-        }
+        public IReadOnlyCollection<IEntity> Entities { get; private set; }
 
         #region Entities
 
@@ -31,7 +22,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 entities.Add(entity);
 
-                entitiesReadOnly = entities.AsReadOnly();
+                CreateReadOnlyCollection();
 
             }
 
@@ -51,8 +42,9 @@ namespace HGS.Tools.ECS.Entities {
 
                 if (entities.Contains(entity)) {
 
-                    entities.Remove(entity);                    
-                    entitiesReadOnly = entities.AsReadOnly();
+                    entities.Remove(entity);  
+                                      
+                    CreateReadOnlyCollection();
 
                 }
 
@@ -212,7 +204,11 @@ namespace HGS.Tools.ECS.Entities {
 
                 entities.Clear();
 
+                CreateReadOnlyCollection();
+
             }
+
+            // Entities = null;
 
             lock(entityFactories) {
 
@@ -226,13 +222,17 @@ namespace HGS.Tools.ECS.Entities {
 
             }
 
-            entitiesReadOnly = null;
-
             lock(entityFilters) {
 
                 entityFilters.Clear();
 
             }
+
+        }
+
+        private void CreateReadOnlyCollection() {
+
+            Entities = new List<IEntity>(entities).AsReadOnly();
 
         }
 

@@ -8,8 +8,8 @@ namespace HGS.Tools.ECS.EntityFilters {
         public bool IsValid { get; }
         public IReadOnlyCollection<EntityFiltered> Entities { get; }
 
-        void EntityRemove(IEntity entity);
-        void EntityUpdate(IEntity entity);
+        public void EntityRemove(IEntity entity);
+        public void EntityUpdate(IEntity entity);
     }
 
 }
