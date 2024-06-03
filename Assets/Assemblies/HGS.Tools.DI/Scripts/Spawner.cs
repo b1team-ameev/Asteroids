@@ -14,20 +14,6 @@ namespace HGS.Tools.DI {
 
         }
 
-        #region Awake/Start/Update/FixedUpdate
-
-        // TODO: можно (нужно?) усложнить, отвязав спавн от Start
-        protected void Start() {
-
-            Spawn(); 
-
-            Destroy(gameObject);
-
-        }
-
-        #endregion
-
-        // TODO: можно (нужно?) усложнить, добавив свой интерфейс
         public virtual T Spawn() {
 
             return (T)factory?.Create();
