@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using HGS.Tools.ECS.Components;
+using System.Linq;
 using HGS.Tools.ECS.Entities;
 
 namespace HGS.Tools.ECS.EntityFilters {
 
-    public class EntityFilter<T1>: IEntityFilter, IDisposable where T1: IComponent {
+    public abstract class EntityFilter: IEntityFilter, IDisposable {
         
-        public EntityFilterState EntityFilterState { get; private set; }
+        protected bool isFiltered;
 
         protected EntityStock entityStock;
         private IReadOnlyCollection<EntityFiltered> entities;
@@ -40,15 +40,15 @@ namespace HGS.Tools.ECS.EntityFilters {
 
             this.entityStock = entityStock;
 
-            EntityFilterState = new EntityFilterState();
-
-            componentCount++;
+            isFiltered = false;
 
         }
 
+        #region Работа с сущностями
+
         private void FilterEntities() {
 
-            if (EntityFilterState.IsFiltered || entityStock == null) {
+            if (isFiltered || entityStock == null) {
 
                 return;
 
@@ -80,9 +80,113 @@ namespace HGS.Tools.ECS.EntityFilters {
             DestroyEntities();
             this.entities = entities.AsReadOnly();
 
-            EntityFilterState.IsFiltered = true;
+            isFiltered = true;
 
         }
+
+        protected abstract bool CheckAndSetComponent(IEntity entity, EntityFiltered entityFiltered);
+
+        public void EntityRemove(IEntity entity) {
+            
+            int index = FindEntity(entity);
+
+            if (index >= 0) {
+
+                IReadOnlyCollection<EntityFiltered> tempEntities = entities;
+
+                if (tempEntities != null && index < tempEntities.Count) {
+
+                    EntityFiltered entityFiltered = tempEntities.ElementAt(index);
+
+                    List<EntityFiltered> entities = new List<EntityFiltered>(tempEntities);
+                    entities.RemoveAt(index);
+
+                    this.entities = entities.AsReadOnly();
+
+                    entityFiltered?.Dispose();
+
+                }
+
+            }
+
+        }
+
+        public void EntityUpdate(IEntity entity) {
+            
+            if (entity == null) {
+
+                return;
+
+            }
+
+            EntityFiltered entityFiltered = new EntityFiltered(entity, componentCount);
+            bool isEntityValid = CheckAndSetComponent(entity, entityFiltered);
+
+            int index = FindEntity(entity);
+
+            // если сущность есть среди сущностей фильтра
+            if (index >= 0) {
+
+                if (isEntityValid) {
+
+                    // ничего не делаем, но отмечаем, что локальную переменную надо почистить
+                    isEntityValid = false;
+
+                }
+                else {
+
+                    EntityRemove(entity);
+
+                }
+
+            }
+            // если сущность подходит, сохраняем ее
+            else if (isEntityValid && entities != null) {
+
+                List<EntityFiltered> entities = new List<EntityFiltered>(this.entities);
+                entities.Add(entityFiltered);
+
+                this.entities = entities.AsReadOnly();
+
+            }
+
+            if (!isEntityValid) {
+
+                entityFiltered?.Dispose();
+
+            }
+
+        }
+
+        private int FindEntity(IEntity entity) {
+
+            if (entity == null || entities == null) {
+
+                return -1;
+
+            }
+
+            IReadOnlyCollection<EntityFiltered> tempEntities = entities;
+
+            for(int i = 0; i < tempEntities.Count; i++) {
+
+                EntityFiltered tempEntity = tempEntities.ElementAt(i);
+
+                if (tempEntity?.Entity == entity) {
+
+                    return i;
+
+                }
+
+            }
+
+            return -1;
+
+        }
+
+        #endregion
+
+        #region Очистка данных
 
         public void Dispose() {
 
@@ -100,7 +204,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
                 foreach(var entityFiltered in tempEntities) {
 
-                    (entityFiltered as IDisposable)?.Dispose();
+                    entityFiltered?.Dispose();
 
                 }
 
@@ -110,15 +214,7 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         }
 
-        protected virtual bool CheckAndSetComponent(IEntity entity, EntityFiltered entityFiltered) {
-
-            IComponent component = entity.GetComponent<T1>();
-
-            entityFiltered.Set(0, component);
-
-            return component != null;
-
-        }
+        #endregion
 
     }
 

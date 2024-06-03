@@ -101,6 +101,8 @@ namespace HGS.Asteroids.ECS.EntityFactories {
                 sounds?.Play(SoundCase.Ufo);
 
             }
+
+            entityStock?.OnEntityUpdate(entity);
             
             return entity;
 

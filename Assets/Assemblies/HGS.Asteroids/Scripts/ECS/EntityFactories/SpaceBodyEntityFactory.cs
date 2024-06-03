@@ -82,6 +82,8 @@ namespace HGS.Asteroids.ECS.EntityFactories {
                 events?.Raise(EventKey.OnAsteroidSpawned);
 
             }
+
+            entityStock?.OnEntityUpdate(entity);
             
             return entity;
 

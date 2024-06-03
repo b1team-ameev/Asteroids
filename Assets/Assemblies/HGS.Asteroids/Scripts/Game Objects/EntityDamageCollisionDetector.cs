@@ -35,7 +35,7 @@ namespace HGS.Asteroids.GameObjects {
             if (entity != null && otherEntity != null && damagerComponent != null) {
                 
                 entity?.AddComponent(new TriggerEnterComponent(otherEntity));
-                entityStock?.RefreshEntityFilters();
+                entityStock?.OnEntityUpdate(entity);
 
             }
 

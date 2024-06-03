@@ -7,13 +7,10 @@ namespace HGS.Tools.ECS.Entities {
     public class EntityStock {
 
         private readonly List<IEntity> entities = new ();        
-        // TODO: необходимо предусмотреть более оптимальную систему обновления фильтров
-        private readonly List<EntityFilterState> entityFilterStates = new ();
-        
+        private readonly List<IEntityFilter> entityFilters = new ();
         private readonly Dictionary<Type, IEntityFactory> entityFactories = new ();
-
+        
         private IReadOnlyCollection<IEntity> entitiesReadOnly;
-
         public IReadOnlyCollection<IEntity> Entities { 
 
             get {
@@ -38,13 +35,11 @@ namespace HGS.Tools.ECS.Entities {
 
             }
 
-            ClearEntityFilterStates();
-
             return entity;
 
         }
 
-        public void RemoveEntity(IEntity entity, bool isNeedClearStates = false) {
+        public void RemoveEntity(IEntity entity) {
 
             if (entity == null) {
 
@@ -59,27 +54,20 @@ namespace HGS.Tools.ECS.Entities {
                     entities.Remove(entity);                    
                     entitiesReadOnly = entities.AsReadOnly();
 
-                    isNeedClearStates = isNeedClearStates && true;
-
                 }
 
             }
 
+            OnEntityRemove(entity);
             (entity as IDisposable)?.Dispose();
-
-            if (isNeedClearStates) {
-
-                ClearEntityFilterStates();
-
-            }
 
         }
 
         // поиск осуществляется по установленному ранее в IEntity idObject
-        public void RemoveEntity(object idObject, bool isNeedClearStates = false) {
+        public void RemoveEntity(object idObject) {
 
             IEntity entity = GetEntity(idObject);
-            RemoveEntity(entity, isNeedClearStates);
+            RemoveEntity(entity);
 
         }
 
@@ -151,35 +139,37 @@ namespace HGS.Tools.ECS.Entities {
 
         #endregion
 
-        #region EntityFilterStates
+        #region EntityFilters
 
-        internal void AddEntityFilterState(EntityFilterState entityFilterState) {
+        internal void AddEntityFilter(IEntityFilter entityFilter) {
 
-            if (entityFilterState == null) {
+            if (entityFilter == null) {
 
                 return;
 
             }
 
-            lock(entityFilterStates) {
+            lock(entityFilters) {
 
-                entityFilterStates.Add(entityFilterState);
+                entityFilters.Add(entityFilter);
 
             }
 
         }
 
-        private void ClearEntityFilterStates() {
+        private void OnEntityRemove(IEntity entity) {
             
-            lock(entityFilterStates) {
+            if (entity == null) {
 
-                foreach(var state in entityFilterStates) {
+                return;
 
-                    if (state != null) {
+            }
 
-                        state.IsFiltered = false;
+            lock(entityFilters) {
 
-                    }
+                foreach(var entityFilter in entityFilters) {
+
+                    entityFilter?.EntityRemove(entity);
 
                 }
 
@@ -187,9 +177,24 @@ namespace HGS.Tools.ECS.Entities {
 
         }
 
-        public void RefreshEntityFilters() {
+        // необходимо вызывать всегда, когда у entity изменился набор компонентов
+        public void OnEntityUpdate(IEntity entity) {
             
-            ClearEntityFilterStates();
+            if (entity == null) {
+
+                return;
+
+            }
+
+            lock(entityFilters) {
+
+                foreach(var entityFilter in entityFilters) {
+
+                    entityFilter?.EntityUpdate(entity);
+
+                }
+
+            }
 
         }
 
@@ -223,9 +228,9 @@ namespace HGS.Tools.ECS.Entities {
 
             entitiesReadOnly = null;
 
-            lock(entityFilterStates) {
+            lock(entityFilters) {
 
-                entityFilterStates.Clear();
+                entityFilters.Clear();
 
             }
 

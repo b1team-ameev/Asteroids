@@ -50,6 +50,8 @@ namespace HGS.Asteroids.ECS.EntityFactories {
                 }
 
             }
+
+            entityStock?.OnEntityUpdate(entity);
             
             return entity;
 

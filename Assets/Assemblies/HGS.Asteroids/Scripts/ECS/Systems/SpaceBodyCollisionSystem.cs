@@ -36,8 +36,6 @@ namespace HGS.Asteroids.ECS.Systems {
         
         public void Run() {
 
-            bool isNeedRefreshEntityFilters = false;
-
             foreach(var entity in EntityFilter.Entities) {
 
                 if (entity != null) {
@@ -102,19 +100,13 @@ namespace HGS.Asteroids.ECS.Systems {
 
                             // удаление объекта
                             entity?.Entity?.AddComponent<DestroyComponent>();
-                            isNeedRefreshEntityFilters = true;
+                            entityStock?.OnEntityUpdate(entity?.Entity);
 
                         }
 
                     }
 
                 }
-
-            }
-
-            if (isNeedRefreshEntityFilters) {
-
-                entityStock?.RefreshEntityFilters();
 
             }
             

@@ -34,8 +34,6 @@ namespace HGS.Asteroids.ECS.Systems {
 
         public void Run() {
 
-            bool isNeedRefreshEntityFilters = false;
-
             foreach(var entity in EntityFilter.Entities) {
 
                 if (entity != null) {
@@ -69,21 +67,14 @@ namespace HGS.Asteroids.ECS.Systems {
                             events?.Raise(EventKey.OnSpaceshipDestroyed);
                             
                             // удаление объекта
-                            entity?.Entity?.AddComponent<DestroyComponent>();
-
-                            isNeedRefreshEntityFilters = true;
+                            entity?.Entity?.AddComponent<DestroyComponent>();                            
+                            entityStock?.OnEntityUpdate(entity?.Entity);
 
                         }
 
                     }
 
                 }
-
-            }
-
-            if (isNeedRefreshEntityFilters) {
-
-                entityStock?.RefreshEntityFilters();
 
             }
             

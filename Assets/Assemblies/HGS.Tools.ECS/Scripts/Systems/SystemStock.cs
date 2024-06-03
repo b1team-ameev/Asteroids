@@ -58,7 +58,7 @@ namespace HGS.Tools.ECS.Systems {
 
                             if (entityFilter != null) {
 
-                                entityStock?.AddEntityFilterState(entityFilter.EntityFilterState);
+                                entityStock?.AddEntityFilter(entityFilter);
 
                             }
 

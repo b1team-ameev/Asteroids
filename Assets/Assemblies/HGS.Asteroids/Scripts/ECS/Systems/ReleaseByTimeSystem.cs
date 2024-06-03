@@ -26,8 +26,6 @@ namespace HGS.Asteroids.ECS.Systems {
 
         public void Run() {
 
-            bool isNeedRefreshEntityFilters = false;
-
             foreach(var entity in EntityFilter.Entities) {
 
                 if (entity != null) {
@@ -45,19 +43,12 @@ namespace HGS.Asteroids.ECS.Systems {
                         else {
 
                             ReleaseEntity(gameObjectComponent?.GameObject);
-                            isNeedRefreshEntityFilters = true;
 
                         }
 
                     }
 
                 }
-
-            }
-
-            if (isNeedRefreshEntityFilters) {
-
-                entityStock?.RefreshEntityFilters();
 
             }
             
@@ -71,7 +62,7 @@ namespace HGS.Asteroids.ECS.Systems {
 
             }
 
-            entityStock?.RemoveEntity(gameObject, false);
+            entityStock?.RemoveEntity(gameObject);
             poolStock?.Release(gameObject);
 
         }

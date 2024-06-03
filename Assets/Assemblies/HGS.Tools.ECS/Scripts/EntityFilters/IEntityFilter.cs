@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HGS.Tools.ECS.Entities;
 
 namespace HGS.Tools.ECS.EntityFilters {
 
@@ -6,8 +7,9 @@ namespace HGS.Tools.ECS.EntityFilters {
         
         public bool IsValid { get; }
         public IReadOnlyCollection<EntityFiltered> Entities { get; }
-        public EntityFilterState EntityFilterState { get; }
 
+        void EntityRemove(IEntity entity);
+        void EntityUpdate(IEntity entity);
     }
 
 }

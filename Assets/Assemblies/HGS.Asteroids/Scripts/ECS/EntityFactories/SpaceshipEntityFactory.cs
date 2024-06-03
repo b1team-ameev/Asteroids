@@ -82,6 +82,8 @@ namespace HGS.Asteroids.ECS.EntityFactories {
                 entity.AddComponent(new SpaceshipEngineAnimatorComponent(gameObject.GetComponent<Animator>()));
                 
             }
+
+            entityStock?.OnEntityUpdate(entity);
             
             return entity;
 

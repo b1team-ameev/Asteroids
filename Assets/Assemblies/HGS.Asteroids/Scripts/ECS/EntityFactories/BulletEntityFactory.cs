@@ -76,6 +76,8 @@ namespace HGS.Asteroids.ECS.EntityFactories {
                 sounds?.Play(sound);
 
             }
+
+            entityStock?.OnEntityUpdate(entity);
             
             return entity;
 
