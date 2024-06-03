@@ -226,19 +226,19 @@ namespace HGS.Tools.ECS.EntityFilters {
 
         private void DestroyEntities() {
 
-            if (entities != null) {
+            lock(lockObject) {
 
-                IReadOnlyCollection<EntityFiltered> tempEntities = entities;
+                if (entities != null) {
 
-                foreach(var entityFiltered in tempEntities) {
+                    IReadOnlyCollection<EntityFiltered> tempEntities = entities;
 
-                    entityFiltered?.Dispose();
+                    foreach(var entityFiltered in tempEntities) {
+
+                        entityFiltered?.Dispose();
+
+                    }
 
                 }
-
-            }
-
-            lock(lockObject) {
 
                 entities = null;
 
