@@ -1,16 +1,22 @@
 using HGS.Tools.DI.Injection;
+using HGS.Tools.ECS.Entities;
 using HGS.Tools.ECS.Systems;
+using UnityEngine;
 
 namespace HGS.Asteroids.ECS {
 
     public class World: InjectedMonoBehaviour {
 
-        private SystemStock systemStock;
+        [field:SerializeField]
+        public SystemStock SystemStock { get; private set; }
+        [field:SerializeField]
+        public EntityStock EntityStock { get; private set; }
 
         [Inject]
-        private void Constructor(SystemStock systemStock) {
+        private void Constructor(SystemStock systemStock, EntityStock entityStock) {
             
-            this.systemStock = systemStock;
+            SystemStock = systemStock;
+            EntityStock = entityStock;
 
         }
 
@@ -18,7 +24,7 @@ namespace HGS.Asteroids.ECS {
 
         private void Update() {
 
-            systemStock?.Run();
+            SystemStock?.Run();
 
         }
 

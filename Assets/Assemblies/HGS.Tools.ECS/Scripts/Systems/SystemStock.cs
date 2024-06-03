@@ -11,6 +11,17 @@ namespace HGS.Tools.ECS.Systems {
         private EntityStock entityStock;
         private readonly List<ISystem> systems = new ();
 
+        // TODO: не использовать
+        public IReadOnlyCollection<ISystem> Systems {
+
+            get {
+
+                return systems.AsReadOnly();
+
+            }
+            
+        }
+
         public SystemStock(EntityStock entityStock) {
 
             this.entityStock = entityStock;

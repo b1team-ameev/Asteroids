@@ -5,27 +5,24 @@ namespace HGS.Asteroids.GameObjects {
     public class SpaceshipObject {
 
         private Object prefab;
-        private GameObject gameObject;
 
-        public GameObject GameObject { 
-            
-            get {
-
-                if (prefab != null && gameObject == null) {
-
-                    gameObject = Object.Instantiate(prefab) as GameObject;
-
-                }
-
-                return gameObject;
-
-            }
-            
-        }
+        public GameObject GameObject { get; private set; }
         
         public SpaceshipObject(Object prefab) { 
 
             this.prefab = prefab;
+
+        }
+
+        public GameObject GetGameObject() {
+
+            if (prefab != null && GameObject == null) {
+
+                GameObject = Object.Instantiate(prefab) as GameObject;
+
+            }
+
+            return GameObject;
 
         }
 

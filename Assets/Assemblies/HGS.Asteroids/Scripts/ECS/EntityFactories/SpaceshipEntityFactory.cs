@@ -68,7 +68,7 @@ namespace HGS.Asteroids.ECS.EntityFactories {
             entity?.AddComponent(new InputValuesPlayerComponent(inputValuesPlayer));
 
             SpaceshipObject spaceshipObject = spaceshipFactory?.Create() as SpaceshipObject;
-            GameObject gameObject = spaceshipObject?.GameObject;
+            GameObject gameObject = spaceshipObject?.GetGameObject();
 
             if (gameObject != null) {
 
