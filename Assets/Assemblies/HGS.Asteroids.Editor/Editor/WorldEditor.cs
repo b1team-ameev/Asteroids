@@ -28,7 +28,7 @@ namespace HGS.Asteroids.Editor {
 
                 if (obj.SystemStock != null) {
 
-                    var systems = obj.SystemStock.Systems;
+                    var systems = obj.SystemStock.SystemsForEditor;
 
                     int count = systems != null ? systems.Count : 0;
                     EditorGUILayout.LabelField($"System Stock ({count})", EditorStyles.boldLabel);
@@ -58,12 +58,12 @@ namespace HGS.Asteroids.Editor {
 
                 if (obj.EntityStock != null) {
 
-                    int count = obj.EntityStock.Entities != null ? obj.EntityStock.Entities.Count : 0;
+                    int count = obj.EntityStock.EntitiesForEditor != null ? obj.EntityStock.EntitiesForEditor.Count : 0;
                     EditorGUILayout.LabelField($"Entity Stock ({count})", EditorStyles.boldLabel);
 
-                    if (obj.EntityStock.Entities != null) {
+                    if (obj.EntityStock.EntitiesForEditor != null) {
 
-                        foreach(var entity in obj.EntityStock.Entities) {
+                        foreach(var entity in obj.EntityStock.EntitiesForEditor) {
 
                             if (entity != null) {
 

@@ -13,21 +13,19 @@ namespace HGS.Tools.ECS.Systems {
 
         #if UNITY_EDITOR
         
-        public IReadOnlyCollection<ISystem> Systems {
-
-            get {
-
-                return systems.AsReadOnly();
-
-            }
-            
-        }
+        public IReadOnlyCollection<ISystem> SystemsForEditor { get; private set; }
 
         #endif
 
         public SystemStock(EntityStock entityStock) {
 
             this.entityStock = entityStock;
+
+            #if UNITY_EDITOR
+        
+            SystemsForEditor = systems.AsReadOnly();
+
+            #endif
 
         }
 
@@ -51,7 +49,7 @@ namespace HGS.Tools.ECS.Systems {
                         if (filterType != null) {
 
                             // устанавливаем фильтр
-                            property.SetValue(system, filterType.GetConstructor(new Type[] { typeof(EntityStock) })?.Invoke(new object[]{ entityStock }));
+                            property.SetValue(system, filterType.GetConstructor(Type.EmptyTypes)?.Invoke(null));
 
                             // передаем его в entityStock
                             IEntityFilter entityFilter = property.GetValue(system) as IEntityFilter;
@@ -82,6 +80,8 @@ namespace HGS.Tools.ECS.Systems {
             lock(systems) {
 
                 foreach(var system in systems) {
+
+                    system?.EntityFilter?.Update();
 
                     if (system != null && system.EntityFilter != null && system.EntityFilter.IsValid) {
 

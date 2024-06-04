@@ -8,7 +8,7 @@ namespace HGS.Tools.ECS.EntityFilters {
         where T2: IComponent
         where T3: IComponent {
         
-        public EntityFilter(EntityStock entityStock): base(entityStock) {
+        public EntityFilter() {
 
             componentCount++;
 

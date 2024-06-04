@@ -10,7 +10,21 @@ namespace HGS.Tools.ECS.Entities {
         private readonly List<IEntityFilter> entityFilters = new ();
         private readonly Dictionary<Type, IEntityFactory> entityFactories = new ();
         
-        public IReadOnlyCollection<IEntity> Entities { get; private set; }
+        #if UNITY_EDITOR
+
+        public IReadOnlyCollection<IEntity> EntitiesForEditor { get; private set; }
+
+        #endif
+
+        public EntityStock() {
+
+            #if UNITY_EDITOR
+
+            EntitiesForEditor = entities?.AsReadOnly();
+
+            #endif
+
+        }
 
         #region Entities
 
@@ -22,8 +36,6 @@ namespace HGS.Tools.ECS.Entities {
 
                 entities.Add(entity);
 
-                CreateReadOnlyCollection();
-
             }
 
             return entity;
@@ -33,7 +45,7 @@ namespace HGS.Tools.ECS.Entities {
         public void RemoveEntity(IEntity entity) {
 
             if (entity == null) {
-
+                
                 return;
 
             }
@@ -43,8 +55,6 @@ namespace HGS.Tools.ECS.Entities {
                 if (entities.Contains(entity)) {
 
                     entities.Remove(entity);  
-                                      
-                    CreateReadOnlyCollection();
 
                 }
 
@@ -152,7 +162,7 @@ namespace HGS.Tools.ECS.Entities {
         private void OnEntityRemove(IEntity entity) {
             
             if (entity == null) {
-
+                
                 return;
 
             }
@@ -161,7 +171,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 foreach(var entityFilter in entityFilters) {
 
-                    entityFilter?.EntityRemove(entity);
+                    entityFilter?.OnEntityRemove(entity);
 
                 }
 
@@ -182,7 +192,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 foreach(var entityFilter in entityFilters) {
 
-                    entityFilter?.EntityUpdate(entity);
+                    entityFilter?.OnEntityUpdate(entity);
 
                 }
 
@@ -204,11 +214,7 @@ namespace HGS.Tools.ECS.Entities {
 
                 entities.Clear();
 
-                CreateReadOnlyCollection();
-
             }
-
-            // Entities = null;
 
             lock(entityFactories) {
 
@@ -227,12 +233,6 @@ namespace HGS.Tools.ECS.Entities {
                 entityFilters.Clear();
 
             }
-
-        }
-
-        private void CreateReadOnlyCollection() {
-
-            Entities = new List<IEntity>(entities).AsReadOnly();
 
         }
 

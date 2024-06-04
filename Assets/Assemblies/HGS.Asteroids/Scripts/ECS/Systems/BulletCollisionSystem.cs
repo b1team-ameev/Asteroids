@@ -1,9 +1,6 @@
-using System;
 using HGS.Asteroids.ECS.Components;
 using HGS.Asteroids.ECS.Components.Damagers;
 using HGS.Asteroids.ECS.Components.Weapons;
-using HGS.Tools.ECS.Components;
-using HGS.Tools.ECS.Entities;
 using HGS.Tools.ECS.EntityFilters;
 using HGS.Tools.ECS.Systems;
 
